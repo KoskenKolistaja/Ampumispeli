@@ -39,7 +39,7 @@ tracks/0/keys = {
 "values": [ Vector2( 11, 0 ), Vector2( 10, -1 ), Vector2( 11, 0 ) ]
 }
 
-[node name="Enemy" type="KinematicBody2D" groups=["hittable"]]
+[node name="Enemy" type="KinematicBody2D" groups=["cleared", "hittable"]]
 script = ExtResource( 2 )
 corpse = ExtResource( 4 )
 

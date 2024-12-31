@@ -8,7 +8,7 @@
 radius = 5.0
 height = 24.0
 
-[node name="Corpse" type="RigidBody2D" groups=["corpse"]]
+[node name="Corpse" type="RigidBody2D" groups=["cleared", "corpse"]]
 z_index = -1
 collision_layer = 2
 script = ExtResource( 2 )

@@ -29,7 +29,9 @@ func _ready():
 	randomize()
 
 
-
+func _physics_process(delta):
+	if Input.is_action_just_pressed("spacebar"):
+		next_level()
 
 
 func create_level():
@@ -115,6 +117,12 @@ func clear_spawnlist():
 	spawn_list.clear()
 	var weapons = get_tree().get_nodes_in_group("weapon")
 	for item in weapons:
+		print(item)
+		item.queue_free()
+	
+	var deleted = get_tree().get_nodes_in_group("cleared")
+	
+	for item in deleted:
 		print(item)
 		item.queue_free()
 	

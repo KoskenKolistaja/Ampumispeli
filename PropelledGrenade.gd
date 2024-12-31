@@ -30,5 +30,4 @@ func explode():
 
 
 func _on_Timer_timeout():
-	print("propelled grenade queued free!")
 	queue_free()
