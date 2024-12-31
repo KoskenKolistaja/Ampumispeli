@@ -30,9 +30,9 @@ func _ready():
 	$CanvasLayer2/Label.text = str(MetaData.level)
 
 
-#func _physics_process(delta):
-#	if Input.is_action_just_pressed("spacebar"):
-#		next_level()
+func _physics_process(delta):
+	if Input.is_action_just_pressed("spacebar"):
+		next_level()
 
 func player_died(object):
 	var players = get_tree().get_nodes_in_group("player")
@@ -41,9 +41,11 @@ func player_died(object):
 	if players:
 		pass
 	else:
-		print("game_over")
-	
-	print("players: " + str(players))
+		game_over()
+
+
+func game_over():
+	MetaData.level = 1
 
 func create_level():
 	$CanvasLayer2/Label.text = str(MetaData.level)
@@ -62,15 +64,21 @@ func spawn_weapons():
 	var spawners = get_tree().get_nodes_in_group("weaponspawner")
 	
 	for item in spawners:
-		if 0.01 < rand_range(0,1):
+		if 0.2 < rand_range(0,1):
 			spawn_weapon(item.global_position)
 
 
 func spawn_weapon(spawn_position):
 	var weapon = null
-	if (0.1 +(MetaData.level/10)) > 0.5:
+	
+	var likelihood = 0
+	
+	likelihood += MetaData.level/100
+	likelihood = clamp(likelihood,0,0.3)
+	
+	if (0.1 + likelihood) > 0.5:
 		weapon = airstrike
-	elif 0.3 > rand_range(0,1):
+	elif 0.1 + likelihood > rand_range(0,1):
 		weapon = grenade_launcher
 	elif 0.5 > rand_range(0,1):
 		weapon = smg
@@ -126,18 +134,15 @@ func next_level():
 func clear_spawnlist():
 	for item in spawn_list:
 		if is_instance_valid(item):
-			print(item)
 			item.queue_free()
 	spawn_list.clear()
 	var weapons = get_tree().get_nodes_in_group("weapon")
 	for item in weapons:
-		print(item)
 		item.queue_free()
 	
 	var deleted = get_tree().get_nodes_in_group("cleared")
 	
 	for item in deleted:
-		print(item)
 		item.queue_free()
 	
 

@@ -69,8 +69,8 @@ func move():
 
 
 
-func update_target():
-	var players = get_tree().get_nodes_in_group("player")
+func update_target(seen_players):
+	var players = seen_players
 	var closest_player = get_closest(players)
 	if closest_player:
 		target = closest_player
@@ -166,22 +166,27 @@ func check_for_target(enemy_position, player_position, player_size):
 		if collision:
 			# Check if ray hits the player
 			if collision.collider.is_in_group("player"):  # Adjust based on your player node
-				ray_results.append(true)
+				ray_results.append(collision.collider)
 			else:
-				ray_results.append(false)
+				pass
 		else:
-			ray_results.append(false)
+			pass
 	
 	# If any ray hits the player, they are visible
-	return true in ray_results
+	return ray_results
 
 
-func _on_Timer_timeout():
-	update_target()
+
+
 
 
 func _on_Timer2_timeout():
 	var friendly_fire = false
+	if is_instance_valid(target):
+		pass
+	else:
+		return
+	
 	if target:
 		friendly_fire = check_friendly_fire($Handpivot/Hand.global_position,target.global_position,1000)
 	if target and not friendly_fire:
@@ -223,14 +228,15 @@ func _on_movement_timer_timeout():
 
 func _on_RaycastTimer_timeout():
 	var players = get_tree().get_nodes_in_group("player")
-	var seen_players = false
+	var seen_players
+	
 	for item in players:
-		var target_true = check_for_target($Position2D.global_position,item.global_position,37)
-		if target_true:
-			seen_players = true
+		var target_list = check_for_target($Position2D.global_position,item.global_position,37)
+		if target_list:
+			seen_players = target_list
 	
 	if seen_players:
-		update_target()
+		update_target(seen_players)
 	else:
 #		target = null
 		pass

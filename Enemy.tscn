@@ -61,9 +61,6 @@ texture = ExtResource( 1 )
 position = Vector2( 0, -6 )
 shape = SubResource( 1 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-
 [node name="Handpivot" type="Node2D" parent="."]
 position = Vector2( 0, -11 )
 
@@ -100,7 +97,6 @@ one_shot = true
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 0, -19 )
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="timeout" from="movement_timer" to="." method="_on_movement_timer_timeout"]
 [connection signal="timeout" from="RaycastTimer" to="." method="_on_RaycastTimer_timeout"]
