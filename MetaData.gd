@@ -1,6 +1,6 @@
 extends Node
 
-var players = 1
+var players = 2
 var level = 1
 
 var audio_player

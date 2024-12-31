@@ -1,15 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Corpse.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Grenade.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Head.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 12.5 )
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 6.0
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 11.0
@@ -47,6 +45,9 @@ tracks/0/keys = {
 "values": [ Vector2( 11, 0 ), Vector2( 10, -1 ), Vector2( 11, 0 ) ]
 }
 
+[sub_resource type="CircleShape2D" id=6]
+radius = 5.0
+
 [node name="Player" type="KinematicBody2D" groups=["hittable", "player"]]
 collision_layer = 2
 script = ExtResource( 1 )
@@ -68,13 +69,6 @@ texture = ExtResource( 2 )
 position = Vector2( 0, -0.5 )
 shape = SubResource( 1 )
 
-[node name="Headshot indicator" type="Area2D" parent="."]
-visible = false
-position = Vector2( 0, -19 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Headshot indicator"]
-shape = SubResource( 2 )
-
 [node name="Handpivot" type="Node2D" parent="."]
 position = Vector2( 0, -11 )
 
@@ -90,3 +84,14 @@ shape = SubResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
 anims/shoot = SubResource( 5 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, -24 )
+
+[node name="Head" type="KinematicBody2D" parent="." groups=["hittable"]]
+collision_layer = 2
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2( 0, -19 )
+shape = SubResource( 6 )

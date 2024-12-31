@@ -81,10 +81,10 @@ func handle_input():
 			throw_grenade(right_stick_direction,grenade_time)
 	
 	var input_detected = false
-	if Input.is_action_pressed("p1_left" , player_id):
+	if Input.is_action_pressed("p" + str(player_id) + "_left",  player_id):
 		velocity.x -= 5
 		input_detected = true
-	if Input.is_action_pressed("p1_right" , player_id):
+	if Input.is_action_pressed("p" + str(player_id) + "_right" , player_id):
 		velocity.x += 5
 		input_detected = true
 	
@@ -93,9 +93,9 @@ func handle_input():
 	var joy_input = Input.get_joy_axis(player_id,JOY_AXIS_0)
 	
 	
-	if Input.is_action_pressed("p1_up"):
+	if Input.is_action_pressed("p" + str(player_id) + "_up" , player_id):
 		y_input = -1
-	elif Input.is_action_pressed("p1_down"):
+	elif Input.is_action_pressed("p" + str(player_id) + "_down" , player_id):
 		y_input = 1
 	
 	if abs(joy_input) < 0.2:
@@ -105,7 +105,7 @@ func handle_input():
 	
 	velocity.x += joy_input*5
 	
-	if Input.is_action_just_pressed("p1_jump" , player_id):
+	if Input.is_action_just_pressed("p" + str(player_id) + "jump" , player_id):
 		if is_on_floor():
 			velocity.y = -jump_strength
 	elif is_on_floor():
@@ -126,6 +126,7 @@ func _physics_process(delta):
 	move_and_slide(velocity,Vector2.UP)
 
 func despawn():
+	get_parent().player_died(self)
 	queue_free()
 
 func get_hit():

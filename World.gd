@@ -27,14 +27,26 @@ onready var spawn_node = $SpawnBlock/PlayerSpawn
 func _ready():
 	create_level()
 	randomize()
+	$CanvasLayer2/Label.text = str(MetaData.level)
 
 
-func _physics_process(delta):
-	if Input.is_action_just_pressed("spacebar"):
-		next_level()
+#func _physics_process(delta):
+#	if Input.is_action_just_pressed("spacebar"):
+#		next_level()
 
+func player_died(object):
+	var players = get_tree().get_nodes_in_group("player")
+	
+	players.erase(object)
+	if players:
+		pass
+	else:
+		print("game_over")
+	
+	print("players: " + str(players))
 
 func create_level():
+	$CanvasLayer2/Label.text = str(MetaData.level)
 	spawn_level()
 	spawn_enemies()
 	spawn_players()
@@ -87,15 +99,17 @@ func spawn_enemy(spawn_position):
 
 
 func spawn_players():
+	var index = 0
 	for item in MetaData.players:
-		spawn_player()
+		spawn_player(index)
+		index += 1
 
 
-func spawn_player():
+func spawn_player(index):
 	var player_instance = player.instance()
 	add_child(player_instance)
 	player_instance.global_position = spawn_node.global_position
-	player_instance.player_id = 1
+	player_instance.player_id = index
 	spawn_list.append(player_instance)
 
 
@@ -144,5 +158,4 @@ func _on_VictoryArea_body_entered(body):
 		next_level()
 
 
-func player_died(object):
-	pass
+

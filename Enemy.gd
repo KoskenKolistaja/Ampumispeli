@@ -11,7 +11,9 @@ var hand_item = null
 
 var target_offset = Vector2(0,0)
 
-var inaccuracy = 40
+var looking_for_target = false
+
+var inaccuracy = 20
 var speed = 40
 
 var movement_list = []
@@ -72,7 +74,20 @@ func update_target():
 	var closest_player = get_closest(players)
 	if closest_player:
 		target = closest_player
+	
+	if target:
+		inform_others(target)
 
+func inform_others(target):
+	var bodies = $Area2D.get_overlapping_bodies()
+	var enemies = []
+	for item in bodies:
+		if item.is_in_group("enemy"):
+			enemies.append(item)
+	
+	for item in enemies:
+		if not item.target:
+			item.target = target
 
 func shoot():
 	if hand_item:
@@ -133,14 +148,94 @@ func get_closest(list):
 	return nearest
 
 
+func check_for_target(enemy_position, player_position, player_size):
+	var space_state = get_world_2d().direct_space_state
+	var ray_results = []
+
+	# Define critical points on the player
+	var head_position = player_position + Vector2(0, -player_size / 2)  # Adjust for head height
+	var torso_position = player_position  # Center of the player
+	var feet_position = player_position + Vector2(0, player_size / 2)  # Adjust for feet
+
+	# Points to raycast
+	var points = [head_position, torso_position, feet_position]
+	var exclude = [self]
+	# Perform raycasts for each point
+	for point in points:
+		var collision = space_state.intersect_ray(enemy_position, point, exclude, 0b11)  # Adjust mask
+		if collision:
+			# Check if ray hits the player
+			if collision.collider.is_in_group("player"):  # Adjust based on your player node
+				ray_results.append(true)
+			else:
+				ray_results.append(false)
+		else:
+			ray_results.append(false)
+	
+	# If any ray hits the player, they are visible
+	return true in ray_results
+
+
 func _on_Timer_timeout():
 	update_target()
 
 
 func _on_Timer2_timeout():
+	var friendly_fire = false
 	if target:
+		friendly_fire = check_friendly_fire($Handpivot/Hand.global_position,target.global_position,1000)
+	if target and not friendly_fire:
 		shoot()
 
 
+func check_friendly_fire(shooter_position, target_position, shooting_range):
+	var space_state = get_world_2d().direct_space_state
+
+	# Cast a ray from the shooter to the target position
+	var end_position = target_position  # Target position (could be player or enemy)
+	
+	# Exclude self (the shooter) from the raycast
+	var exclude = [self]
+
+	# Correct layer mask for enemies on layer 1 (0b01 or 1)
+	var collision_mask = 0b01  # Layer 1 for enemies
+
+	# Perform the raycast
+	var collision = space_state.intersect_ray(shooter_position, end_position, exclude, collision_mask)
+
+	if collision:
+		# Check if the ray hit a node in the "enemy" group
+		if collision.collider.is_in_group("enemy"):
+			print("Enemy detected: ", collision.collider.name)
+			return true  # Enemy hit
+		else:
+			print("Ray hit something else: ", collision.collider.name)
+			return false  # Hit something else
+	else:
+		print("No collision detected on the shooting line.")
+		return false  # No hit
+
+
 func _on_movement_timer_timeout():
-	generate_movement()
+	if target:
+		generate_movement()
+
+
+func _on_RaycastTimer_timeout():
+	var players = get_tree().get_nodes_in_group("player")
+	var seen_players = false
+	for item in players:
+		var target_true = check_for_target($Position2D.global_position,item.global_position,37)
+		if target_true:
+			seen_players = true
+	
+	if seen_players:
+		update_target()
+	else:
+#		target = null
+		pass
+	
+
+
+func _on_EnemyLostTimer_timeout():
+	target = null

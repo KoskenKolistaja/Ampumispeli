@@ -19,6 +19,8 @@ func _on_Bullet_body_entered(body):
 		if body.has_method("get_hit"):
 			body.get_hit()
 			queue_free()
+	elif body.collision_layer == 2:
+		pass
 	else:
 		spawn_decal()
 		queue_free()
