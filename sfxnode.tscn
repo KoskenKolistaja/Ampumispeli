@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sfxnode.gd" type="Script" id=1]
+[ext_resource path="res://sfx/explosions/grenade_5.mp3" type="AudioStream" id=2]
+
+[node name="sfxnode" type="AudioStreamPlayer"]
+stream = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[connection signal="finished" from="." to="." method="_on_sfxnode_finished"]

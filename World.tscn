@@ -1,0 +1,156 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://ARDroppable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://AudioPlayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World.gd" type="Script" id=5]
+[ext_resource path="res://Grenade.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Textures/Tiny Texture Pack - 128x128/128x128/Bricks/Bricks_05-128x128.png" type="Texture" id=8]
+[ext_resource path="res://Ladder.tscn" type="PackedScene" id=9]
+[ext_resource path="res://icon.png" type="Texture" id=10]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=11]
+[ext_resource path="res://SMGDroppable.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Textures/background/10.png" type="Texture" id=13]
+[ext_resource path="res://AirstrikePhoneDroppable.tscn" type="PackedScene" id=14]
+[ext_resource path="res://WeaponSpawner.tscn" type="PackedScene" id=16]
+[ext_resource path="res://GrenadeLauncherDroppable.tscn" type="PackedScene" id=18]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 36, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 220 )
+
+[node name="World" type="Node2D"]
+position = Vector2( -1, 0 )
+script = ExtResource( 5 )
+grenade = ExtResource( 6 )
+bullet = ExtResource( 7 )
+player = ExtResource( 2 )
+enemy = ExtResource( 11 )
+smg = ExtResource( 12 )
+ar = ExtResource( 1 )
+grenade_launcher = ExtResource( 18 )
+airstrike = ExtResource( 14 )
+
+[node name="AudioPlayer" parent="." instance=ExtResource( 4 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 17, 160 )
+current = true
+script = ExtResource( 3 )
+random_strength = 30.0
+
+[node name="SpawnBlock" type="StaticBody2D" parent="."]
+position = Vector2( -559, 368 )
+
+[node name="Bricks05-128X128" type="Sprite" parent="SpawnBlock"]
+modulate = Color( 0.541176, 0.541176, 0.541176, 1 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X129" type="Sprite" parent="SpawnBlock"]
+modulate = Color( 0.541176, 0.541176, 0.541176, 1 )
+position = Vector2( 64, 0 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X130" type="Sprite" parent="SpawnBlock"]
+position = Vector2( -24, -24 )
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X132" type="Sprite" parent="SpawnBlock"]
+position = Vector2( 72, -24 )
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X133" type="Sprite" parent="SpawnBlock"]
+position = Vector2( 56, -24 )
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X134" type="Sprite" parent="SpawnBlock"]
+position = Vector2( 24, -24 )
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X135" type="Sprite" parent="SpawnBlock"]
+position = Vector2( 40, -24 )
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X138" type="Sprite" parent="SpawnBlock"]
+position = Vector2( 88, -24 )
+scale = Vector2( 0.125, 0.125 )
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X139" type="Sprite" parent="SpawnBlock"]
+position = Vector2( 92, -8 )
+scale = Vector2( 0.0625, 0.125 )
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X140" type="Sprite" parent="SpawnBlock"]
+position = Vector2( 92, 8 )
+scale = Vector2( 0.0625, 0.125 )
+texture = ExtResource( 8 )
+
+[node name="Bricks05-128X141" type="Sprite" parent="SpawnBlock"]
+position = Vector2( 92, 24 )
+scale = Vector2( 0.0625, 0.125 )
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnBlock"]
+position = Vector2( 52, -24 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SpawnBlock"]
+position = Vector2( 92, 0 )
+shape = SubResource( 2 )
+
+[node name="Ladder" parent="SpawnBlock" instance=ExtResource( 9 )]
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="SpawnBlock"]
+position = Vector2( -24, -24 )
+shape = SubResource( 3 )
+
+[node name="PlayerSpawn" type="Node2D" parent="SpawnBlock"]
+position = Vector2( 52, 8 )
+
+[node name="WeaponSpawner" parent="SpawnBlock" instance=ExtResource( 16 )]
+position = Vector2( 16, 8 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ParallaxBackground"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 1.00402, 1.00402 )
+texture = ExtResource( 13 )
+expand = true
+
+[node name="VictoryArea" type="Area2D" parent="."]
+position = Vector2( 697, 240 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VictoryArea"]
+shape = SubResource( 4 )
+
+[node name="Icon" type="Sprite" parent="VictoryArea"]
+position = Vector2( 24, 0 )
+scale = Vector2( 1, 10 )
+texture = ExtResource( 10 )
+
+[connection signal="body_entered" from="VictoryArea" to="." method="_on_VictoryArea_body_entered"]

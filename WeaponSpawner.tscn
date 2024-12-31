@@ -1,0 +1,3 @@
+[gd_scene format=2]
+
+[node name="WeaponSpawner" type="Node2D" groups=["weaponspawner"]]

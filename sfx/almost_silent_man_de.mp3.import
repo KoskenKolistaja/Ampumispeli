@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/almost_silent_man_de.mp3-9f11b66e010ba3d2266e7542898cdef1.mp3str"
+
+[deps]
+
+source_file="res://sfx/almost_silent_man_de.mp3"
+dest_files=[ "res://.import/almost_silent_man_de.mp3-9f11b66e010ba3d2266e7542898cdef1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

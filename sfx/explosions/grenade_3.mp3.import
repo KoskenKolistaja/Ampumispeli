@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/grenade_3.mp3-497f84434a5f7c84c1e2ba1b6299c7e9.mp3str"
+
+[deps]
+
+source_file="res://sfx/explosions/grenade_3.mp3"
+dest_files=[ "res://.import/grenade_3.mp3-497f84434a5f7c84c1e2ba1b6299c7e9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

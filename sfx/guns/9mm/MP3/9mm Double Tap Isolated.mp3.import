@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/9mm Double Tap Isolated.mp3-fe12f58c002826b54e547991d49f197f.mp3str"
+
+[deps]
+
+source_file="res://sfx/guns/9mm/MP3/9mm Double Tap Isolated.mp3"
+dest_files=[ "res://.import/9mm Double Tap Isolated.mp3-fe12f58c002826b54e547991d49f197f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

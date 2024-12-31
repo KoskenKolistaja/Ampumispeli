@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/20 Gauge Single Isolated.mp3-8b3615fe56d8668571803b5bac7155ff.mp3str"
+
+[deps]
+
+source_file="res://sfx/guns/20 Gauge/MP3/20 Gauge Single Isolated.mp3"
+dest_files=[ "res://.import/20 Gauge Single Isolated.mp3-8b3615fe56d8668571803b5bac7155ff.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

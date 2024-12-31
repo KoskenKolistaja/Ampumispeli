@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/20 Gauge Spray Isolated.mp3-03d690338ac99bac47a42231b4949371.mp3str"
+
+[deps]
+
+source_file="res://sfx/guns/20 Gauge/MP3/20 Gauge Spray Isolated.mp3"
+dest_files=[ "res://.import/20 Gauge Spray Isolated.mp3-03d690338ac99bac47a42231b4949371.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

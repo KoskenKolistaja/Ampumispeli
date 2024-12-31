@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/20 Gauge Double Tap Isolated.mp3-0d4bab13e953a973b11f20dd343cf2e3.mp3str"
+
+[deps]
+
+source_file="res://sfx/guns/20 Gauge/MP3/20 Gauge Double Tap Isolated.mp3"
+dest_files=[ "res://.import/20 Gauge Double Tap Isolated.mp3-0d4bab13e953a973b11f20dd343cf2e3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

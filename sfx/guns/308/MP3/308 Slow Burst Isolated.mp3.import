@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/308 Slow Burst Isolated.mp3-152c3ce51718188b46622f1d6ff86d5e.mp3str"
+
+[deps]
+
+source_file="res://sfx/guns/308/MP3/308 Slow Burst Isolated.mp3"
+dest_files=[ "res://.import/308 Slow Burst Isolated.mp3-152c3ce51718188b46622f1d6ff86d5e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

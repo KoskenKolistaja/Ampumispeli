@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/308 Spray Isolated.mp3-842a2b00eb1111fec7603eac8c6fc418.mp3str"
+
+[deps]
+
+source_file="res://sfx/guns/9mm/308/MP3/308 Spray Isolated.mp3"
+dest_files=[ "res://.import/308 Spray Isolated.mp3-842a2b00eb1111fec7603eac8c6fc418.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

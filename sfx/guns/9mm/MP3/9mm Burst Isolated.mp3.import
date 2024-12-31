@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/9mm Burst Isolated.mp3-885a6ec4ccc66b27e71604f389d8eb76.mp3str"
+
+[deps]
+
+source_file="res://sfx/guns/9mm/MP3/9mm Burst Isolated.mp3"
+dest_files=[ "res://.import/9mm Burst Isolated.mp3-885a6ec4ccc66b27e71604f389d8eb76.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

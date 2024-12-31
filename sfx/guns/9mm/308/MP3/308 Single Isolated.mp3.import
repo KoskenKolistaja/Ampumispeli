@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/308 Single Isolated.mp3-80549ce043266e79c6b2837a41eeddac.mp3str"
+
+[deps]
+
+source_file="res://sfx/guns/9mm/308/MP3/308 Single Isolated.mp3"
+dest_files=[ "res://.import/308 Single Isolated.mp3-80549ce043266e79c6b2837a41eeddac.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

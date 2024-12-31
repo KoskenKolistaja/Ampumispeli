@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/308 Double Tap Isolated.mp3-266b873cd8a0d66f3f7207852446d21a.mp3str"
+
+[deps]
+
+source_file="res://sfx/guns/308/MP3/308 Double Tap Isolated.mp3"
+dest_files=[ "res://.import/308 Double Tap Isolated.mp3-266b873cd8a0d66f3f7207852446d21a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
